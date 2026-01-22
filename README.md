@@ -1,80 +1,201 @@
-# Chatbot Hỗ trợ Học tập cho Sinh viên
+# Smart Learning Support Chatbot
 
-Hệ thống chatbot AI trợ giảng ảo giúp sinh viên tương tác với tài liệu học tập, đặt câu hỏi, tạo tóm tắt, ghi chú và quiz.
+A smart learning support platform (chatbot) that functions as a virtual teaching assistant, enabling students to interact deeply with their academic materials through natural language conversation.
 
-## Công nghệ sử dụng
+## 🎯 Features
 
-- **Frontend**: Next.js 14 + React + Tailwind CSS
-- **Backend**: Python FastAPI
-- **LLM**: OpenAI GPT-4 (có thể thay bằng Claude/Gemini/Llama)
-- **RAG**: LangChain
-- **Vector Database**: ChromaDB
-- **Document Processing**: PyPDF2, python-docx
-- **Audio**: OpenAI TTS (hoặc ElevenLabs)
+- **Document Upload**: Upload PDF files (textbooks, lecture notes, slides)
+- **Question Answering**: Ask questions and get answers based on your uploaded documents
+- **Document Summarization**: Get concise summaries of entire documents
+- **Study Notes Generation**: Generate structured learning notes (Chú học tập)
+- **FAQ Generator**: Create frequently asked questions with answers
+- **Podcast Script Generator**: Generate educational podcast scripts
+- **Multi-language Support**: English and Vietnamese (Tiếng Việt)
+- **RAG-based**: Uses Retrieval-Augmented Generation to ensure all responses are grounded in document content
 
-## Tính năng chính
+## 🏗️ Architecture
 
-1. 💬 Tương tác Q&A và tìm kiếm nội dung từ tài liệu
-2. 📚 Tạo tóm tắt tài liệu
-3. 🗒️ Tạo ghi chú học tập
-4. ❓ Tạo bộ câu hỏi FAQ/Quiz
-5. 🎙️ Tạo podcast dạng đối thoại
+- **Frontend**: Next.js 14 with TypeScript and Tailwind CSS
+- **Backend**: FastAPI (Python) with RAG pipeline
+- **LLM**: Groq API (Mixtral 8x7b)
+- **Vector Store**: ChromaDB
+- **Embeddings**: Sentence Transformers (all-MiniLM-L6-v2)
 
-## Cài đặt
+## 📋 Prerequisites
 
-### Backend
+- Python 3.8+
+- Node.js 18+
+- Groq API Key ([Get one here](https://console.groq.com/))
 
+## 🚀 Setup Instructions
+
+### Backend Setup
+
+1. Navigate to the backend directory:
 ```bash
 cd backend
+```
+
+2. Create a virtual environment:
+```bash
 python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
+```
+
+3. Activate the virtual environment:
+```bash
+# On Windows
+venv\Scripts\activate
+
+# On macOS/Linux
+source venv/bin/activate
+```
+
+4. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-Tạo file `.env` trong thư mục `backend`:
-```
-OPENAI_API_KEY=your_openai_api_key
+5. Create a `.env` file in the `backend` directory:
+```env
+GROQ_API_KEY=your_groq_api_key_here
+UPLOAD_DIR=./uploads
+VECTOR_STORE_DIR=./vectorstore
+MODEL_NAME=llama-3.1-8b-instant
 ```
 
-Chạy server:
+6. Start the backend server:
 ```bash
 uvicorn app.main:app --reload --port 8000
 ```
 
-### Frontend
+The backend API will be available at `http://localhost:8000`
 
+### Frontend Setup
+
+1. Navigate to the frontend directory:
 ```bash
 cd frontend
+```
+
+2. Install dependencies:
+```bash
 npm install
 ```
 
-Tạo file `.env.local`:
-```
+3. Create a `.env.local` file in the `frontend` directory (optional, defaults to localhost:8000):
+```env
 NEXT_PUBLIC_API_URL=http://localhost:8000
 ```
 
-Chạy development server:
+4. Start the development server:
 ```bash
 npm run dev
 ```
 
-## Cấu trúc dự án
+The frontend will be available at `http://localhost:3000`
+
+## 📁 Project Structure
 
 ```
-chatbot_assitstant/
+Cloudy/
 ├── backend/
 │   ├── app/
-│   │   ├── main.py
-│   │   ├── models/
-│   │   ├── services/
-│   │   ├── routers/
-│   │   └── utils/
+│   │   ├── __init__.py
+│   │   ├── main.py              # FastAPI application
+│   │   └── services/
+│   │       ├── __init__.py
+│   │       ├── document_service.py  # PDF processing & vectorization
+│   │       └── rag_service.py       # RAG pipeline & LLM integration
 │   ├── requirements.txt
-│   └── .env
+│   └── .env (create this)
 ├── frontend/
 │   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   └── globals.css
 │   ├── components/
-│   ├── lib/
-│   └── package.json
+│   │   ├── ChatInterface.tsx
+│   │   ├── DocumentUpload.tsx
+│   │   └── TaskPanel.tsx
+│   ├── package.json
+│   └── .env.local (optional)
 └── README.md
 ```
+
+## 🔧 API Endpoints
+
+### POST `/api/upload`
+Upload a PDF document for processing.
+
+**Request**: Multipart form data with `file` field
+**Response**: `{ "success": true, "document_id": "...", "message": "..." }`
+
+### POST `/api/query`
+Ask a question about the document.
+
+**Request Body**:
+```json
+{
+  "query": "What is the main topic?",
+  "document_id": "...",
+  "language": "en"
+}
+```
+
+**Response**: `{ "success": true, "response": "..." }`
+
+### POST `/api/task`
+Perform a specialized task (summarize, study_notes, faq, podcast).
+
+**Request Body**:
+```json
+{
+  "document_id": "...",
+  "task_type": "summarize",
+  "language": "en"
+}
+```
+
+**Response**: `{ "success": true, "task_type": "...", "response": "..." }`
+
+### GET `/api/documents`
+List all uploaded documents.
+
+**Response**: `{ "success": true, "documents": [...] }`
+
+## 🎨 Usage
+
+1. **Upload a Document**: Click "Choose PDF File" or drag and drop a PDF
+2. **Ask Questions**: Use the Chat tab to ask questions about your document
+3. **Generate Study Materials**: Use the Study Tools tab to:
+   - Summarize the document
+   - Generate study notes
+   - Create FAQs
+   - Generate podcast scripts
+
+## ⚠️ Important Notes
+
+- The system operates strictly under the RAG paradigm
+- All responses are based only on the uploaded document content
+- If information is not available in the document, the system will respond: "The requested information is not available in the uploaded document."
+- The system does not use external knowledge or make assumptions beyond the document
+
+## 🔐 Environment Variables
+
+### Backend (.env)
+- `GROQ_API_KEY`: Your Groq API key (required)
+- `UPLOAD_DIR`: Directory for uploaded PDFs (default: ./uploads)
+- `VECTOR_STORE_DIR`: Directory for vector store (default: ./vectorstore)
+- `MODEL_NAME`: Groq model name (default: llama-3.1-8b-instant). Check https://console.groq.com/docs/models for current available models
+
+### Frontend (.env.local)
+- `NEXT_PUBLIC_API_URL`: Backend API URL (default: http://localhost:8000)
+
+## 📝 License
+
+This project is for educational purposes.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+

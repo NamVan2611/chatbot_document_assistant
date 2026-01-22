@@ -4,38 +4,47 @@ __pycache__/
 *$py.class
 *.so
 .Python
-venv/
 env/
+venv/
 ENV/
 .venv
 *.egg-info/
 dist/
 build/
 
-# Environment
-.env
-.env.local
-.env.*.local
+# Next.js
+.next/
+out/
+node_modules/
+.env*.local
+.vercel
 
-# IDEs
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# Node
-node_modules/
-.next/
-out/
-*.log
+# Environment variables
+.env
+.env.local
 
-# Uploads and databases
+# Vector stores
+vectorstore/
+*.pkl
+*.faiss
+
+# Uploads
 uploads/
-chroma_db/
-*.db
-*.sqlite
+documents/
+
+# Logs
+*.log
+logs/
 
 # OS
 .DS_Store
 Thumbs.db
+
+

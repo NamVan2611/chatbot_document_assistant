@@ -1,0 +1,23 @@
+{
+  "session_id": "9b0fd663-77bc-459b-9178-e71ae472d553",
+  "document_ids": [],
+  "created_at": "2026-01-09T12:23:11.943658",
+  "updated_at": "2026-01-09T12:25:37.009337",
+  "documents": [
+    {
+      "document_id": "a0d5448e-7738-45ea-8dd3-842003ab2977",
+      "document_name": "NgoNamVan_Frontend_Intern.pdf",
+      "added_at": "2026-01-09T12:24:58.045887"
+    },
+    {
+      "document_id": "81c99d54-a3a0-4552-8ee8-f8b063b7ac48",
+      "document_name": "tailieu.pdf",
+      "added_at": "2026-01-09T12:25:14.328508"
+    },
+    {
+      "document_id": "6f481bd3-708a-4202-8299-a4083acbd074",
+      "document_name": "Nhan dang bang song VT-EE2.312.2-64-EE2.pdf",
+      "added_at": "2026-01-09T12:25:37.009337"
+    }
+  ]
+}

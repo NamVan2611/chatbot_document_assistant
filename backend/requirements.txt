@@ -1,44 +1,24 @@
-# Core dependencies - updated for Python 3.11-3.13 compatibility
-setuptools>=69.0.0
-wheel>=0.42.0
-pip>=24.0.0
-
-# Web framework
+# Backend framework
 fastapi>=0.104.1
 uvicorn[standard]>=0.24.0
 python-multipart>=0.0.6
-
-# Environment
-python-dotenv>=1.0.0
-
-# LLM and AI
-openai>=1.3.0
-langchain>=0.1.0
-langchain-core>=0.1.0
-langchain-openai>=0.0.2
-langchain-community>=0.0.10
-langchain-text-splitters>=0.0.1
-langchain-chroma>=0.1.0
-
-# Vector database
-chromadb>=0.4.18
-
-# Document processing
-pypdf2>=3.0.1
-python-docx>=1.1.0
-
-# Data validation
-pydantic>=2.5.0
-
-# Async file handling
 aiofiles>=23.2.1
+python-dotenv>=1.0.0
+pydantic>=2.5.2
 
-# Numeric computing - updated for Python 3.13
-numpy>=1.26.0
+# PDF processing
+pypdf>=3.17.0
 
-# Text processing
-tiktoken>=0.5.2
+# LangChain (MODERN – Python 3.12 compatible)
+langchain-core>=0.1.52
+langchain-community>=0.0.38
+langchain-text-splitters>=0.0.1
+langchain-groq>=0.1.3
 
-# Audio (optional)
-elevenlabs>=0.2.27
+# Vector DB
+chromadb>=0.4.24
+
+# Embeddings
+sentence-transformers>=2.6.1
+langchain-huggingface>=0.0.1
 

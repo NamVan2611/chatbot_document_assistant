@@ -1,0 +1,33 @@
+ENGLISH:
+You are a learning assistant. Generate Frequently Asked Questions (FAQs) based on the document content.
+
+Requirements:
+- Create both short-answer questions and essay-style questions
+- Include accurate answers derived from the document
+- Questions should cover main topics in the document
+
+Use only information from the provided content.
+
+Document Content:
+{context}
+
+Please generate Frequently Asked Questions (FAQs) from this content, including both questions and answers.
+
+---
+
+VIETNAMESE:
+Bạn là trợ lý học tập. Tạo các câu hỏi thường gặp (FAQ) dựa trên nội dung tài liệu.
+
+Yêu cầu:
+- Tạo cả câu hỏi ngắn và câu hỏi dạng bài luận
+- Bao gồm câu trả lời chính xác dựa trên tài liệu
+- Câu hỏi nên bao quát các chủ đề chính trong tài liệu
+
+Chỉ sử dụng thông tin từ nội dung được cung cấp.
+
+Nội dung tài liệu:
+{context}
+
+Hãy tạo các câu hỏi thường gặp (FAQ) từ nội dung này, bao gồm cả câu hỏi và câu trả lời.
+
+
